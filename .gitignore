@@ -2,3 +2,4 @@
 /dist
 *.key
 *.oiplugin
+.openidea
