@@ -26,6 +26,24 @@
       "title": "Second line with no file open",
       "default": ""
     },
+    "privacyMode": {
+      "type": "boolean",
+      "title": "Privacy mode",
+      "description": "Show only the language: \"Editing a Rust file in a project\". No file, project or branch names, no repository button.",
+      "default": false
+    },
+    "hideSensitiveFiles": {
+      "type": "boolean",
+      "title": "Hide files that may hold secrets",
+      "description": ".env files, keys, certificates, keystores, Terraform state and variables, secrets.* and credentials.* files, and anything in .ssh, .aws, .gnupg or .kube are shown as \"a private file\", without their name or logo.",
+      "default": true
+    },
+    "languageImages": {
+      "type": "boolean",
+      "title": "Language logo",
+      "description": "Show the logo of the language, or of the tool for files such as package.json, build.gradle, vite.config.ts or GitHub workflows, with the OpenIDEA logo in the corner. Off, or with no logo: the OpenIDEA logo.",
+      "default": true
+    },
     "timestamp": {
       "type": "string",
       "title": "Elapsed time",
@@ -34,18 +52,59 @@
         "file",
         "none"
       ],
-      "default": "session"
+      "default": "session",
+      "description": "session: since you started working (kept across windows and short breaks); file: since you opened the current file; none: no timer."
     },
     "idleMinutes": {
       "type": "integer",
-      "title": "Hide after this many minutes without editor activity (0: never)",
+      "title": "Idle after this many minutes without editor activity (0: never)",
       "default": 5
     },
-    "languageImages": {
+    "idleAction": {
+      "type": "string",
+      "title": "When idle",
+      "description": "clear: hide the activity; idle: show the idle line below with how long you have been away; keep: keep showing the last file.",
+      "enum": [
+        "clear",
+        "idle",
+        "keep"
+      ],
+      "default": "clear"
+    },
+    "idleText": {
+      "type": "string",
+      "title": "Idle line",
+      "description": "Shown when idle is chosen above. Placeholders as above.",
+      "default": "Idle in {project}"
+    },
+    "resetTimerOnReturn": {
       "type": "boolean",
-      "title": "Language logo",
-      "description": "Show the language's logo, with the OpenIDEA logo in the corner. Off, or for a language without a logo: the OpenIDEA logo.",
+      "title": "Restart the timer after being idle",
+      "description": "Off: the session timer continues after breaks shorter than 30 minutes.",
+      "default": false
+    },
+    "repositoryButton": {
+      "type": "boolean",
+      "title": "\"View Repository\" button",
+      "description": "Links to the project's git remote (origin), as an https address without user names or tokens. Others see the button; Discord doesn't show your own buttons to you.",
+      "default": false
+    },
+    "openideaButton": {
+      "type": "boolean",
+      "title": "\"Get OpenIDEA\" button",
       "default": true
+    },
+    "customButtonLabel": {
+      "type": "string",
+      "title": "Custom button label",
+      "description": "Up to 32 characters. Discord shows at most two buttons: repository, custom, then OpenIDEA.",
+      "default": ""
+    },
+    "customButtonUrl": {
+      "type": "string",
+      "title": "Custom button link",
+      "description": "An https:// address.",
+      "default": ""
     },
     "statusBar": {
       "type": "boolean",
