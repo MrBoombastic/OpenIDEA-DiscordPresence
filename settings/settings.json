@@ -1,0 +1,56 @@
+{
+  "properties": {
+    "enabled": {
+      "type": "boolean",
+      "title": "Show my activity on Discord",
+      "default": true
+    },
+    "details": {
+      "type": "string",
+      "title": "First line while editing",
+      "description": "Placeholders: {file}, {language}, {project}, {branch}. Leave out what you don't want to share.",
+      "default": "Editing {file}"
+    },
+    "state": {
+      "type": "string",
+      "title": "Second line while editing",
+      "default": "in {project}"
+    },
+    "idleDetails": {
+      "type": "string",
+      "title": "First line with no file open",
+      "default": "Browsing {project}"
+    },
+    "idleState": {
+      "type": "string",
+      "title": "Second line with no file open",
+      "default": ""
+    },
+    "timestamp": {
+      "type": "string",
+      "title": "Elapsed time",
+      "enum": [
+        "session",
+        "file",
+        "none"
+      ],
+      "default": "session"
+    },
+    "idleMinutes": {
+      "type": "integer",
+      "title": "Hide after this many minutes without editor activity (0: never)",
+      "default": 5
+    },
+    "languageImages": {
+      "type": "boolean",
+      "title": "Language logo",
+      "description": "Show the language's logo, with the OpenIDEA logo in the corner. Off, or for a language without a logo: the OpenIDEA logo.",
+      "default": true
+    },
+    "statusBar": {
+      "type": "boolean",
+      "title": "Status bar item",
+      "default": true
+    }
+  }
+}

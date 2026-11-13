@@ -1,0 +1,56 @@
+# OpenIDEA Plugin: Discord Presence
+id = "mrboombastic.discord-presence"
+name = "Discord Presence"
+version = "1.0.0"
+description = "Shows what you are working on in OpenIDEA (file, language, project, branch) as your Discord activity, through the Discord desktop app on the same computer."
+authors = ["MrBoombastic"]
+homepage = "https://github.com/MrBoombastic/OpenIDEA-DiscordPresence"
+license = "MIT"
+change-notes = "1.0.0 — First release."
+categories = ["tools", "other"]
+icon = "icons/icon.svg"
+icon-dark = "icons/icon_dark.svg"
+engines.openidea = "^1.4"
+wasm = "dist/plugin.wasm"
+# Editor events show and update the presence; the schedule notices idleness
+# and a Discord app started after the IDE.
+activation = [
+    "on-startup-finished",
+    "on-event:editor-focused",
+    "on-event:file-opened",
+    "on-event:file-saved",
+    "on-event:vcs-changed",
+    "on-event:settings-changed",
+    "on-schedule:60",
+    "on-command:*",
+]
+
+[capabilities]
+# `ipc:` is the Discord app's local socket: the named pipe on Windows, the
+# runtime directory (also Flatpak and Snap Discord) on Linux, TMPDIR on macOS.
+required = [
+    "events",
+    "storage",
+    "project.read",
+    'ipc:\\.\pipe\discord-ipc-*',
+    "ipc:$XDG_RUNTIME_DIR/discord-ipc-*",
+    "ipc:$XDG_RUNTIME_DIR/app/com.discordapp.Discord/discord-ipc-*",
+    "ipc:$XDG_RUNTIME_DIR/snap.discord/discord-ipc-*",
+    "ipc:$TMPDIR/discord-ipc-*",
+    "ipc:/tmp/discord-ipc-*",
+]
+# The branch in `{branch}`.
+optional = ["vcs.read"]
+
+[[contributes.commands]]
+id = "toggle"
+title = "Discord Presence: Turn On/Off"
+category = "Discord Presence"
+
+[[contributes.commands]]
+id = "reconnect"
+title = "Discord Presence: Reconnect"
+category = "Discord Presence"
+
+[contributes.settings]
+schema = "settings/settings.json"
